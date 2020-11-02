@@ -6,7 +6,7 @@ const dotenv       = require('dotenv').config();
 const bcrypt       = require('bcryptjs');
 
 // import manual middleware
-
+const headerApi = require('./middlewares/configApi');
 
 // import routes files
 
@@ -42,7 +42,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Use middleware
-
+app.use(headerApi);
 
 // Initiate all routes
 
