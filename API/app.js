@@ -5,8 +5,11 @@ const logger       = require('morgan');
 const dotenv       = require('dotenv').config();
 const bcrypt       = require('bcryptjs');
 
+// import manual middleware
+
+
 // import routes files
-const indexRouter = require('./routes/index');
+
 
 // imports models files
 const UserModel    = require('./models/users');
@@ -42,7 +45,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Initiate all routes
-app.use('/', indexRouter);
 
 
 // error handler

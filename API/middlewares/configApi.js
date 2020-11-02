@@ -1,3 +1,3 @@
 /**
- * 
+ * Set headers API config
  */
