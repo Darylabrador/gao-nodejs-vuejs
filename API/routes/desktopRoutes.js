@@ -12,15 +12,26 @@ const router = require('express').Router();
 
 /**
 * get the list of computers
-* @name List GET
+* @name getComputers GET
 * @function
 * @memberof module:routers/desktop
 * @param {string} '/api/computers' - uri
 * @param {function} desktopController.getComputers
 * @return {JSON}
 */
-router.get('/', desktopController.getComputers);
+router.get('/computers', desktopController.getComputers);
 
+
+/**
+* Create new desktop
+* @name List POST
+* @function
+* @memberof module:routers/desktop
+* @param {string} '/api/computers' - uri
+* @param {function} desktopController.postComputers
+* @return {JSON}
+*/
+router.post('/computers', desktopController.postComputers);
 
 
 module.exports = router;

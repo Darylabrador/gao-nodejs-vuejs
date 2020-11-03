@@ -2,18 +2,12 @@ const express      = require('express');
 const path         = require('path');
 const cookieParser = require('cookie-parser');
 const logger       = require('morgan');
-const dotenv       = require('dotenv').config();
-const bcrypt       = require('bcryptjs');
 
 // import manual middleware
 const headerApi = require('./middlewares/configApi');
 
 // import routes files
-
-
-// imports models files
-const UserModel    = require('./models/users');
-
+const desktopRoutes = require('./routes/desktopRoutes');
 
 // relation between models
 // ClientModel.hasMany(AssignModel);
@@ -23,9 +17,6 @@ const UserModel    = require('./models/users');
 
 // Imports controllers files
 
-
-// Import database config file
-const database = require('./config/database');
 
 var app = express();
 
@@ -43,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(headerApi);
 
 // Initiate all routes
-
+app.use('/api', desktopRoutes);
 
 // error handler
 
