@@ -5,7 +5,7 @@ module.exports = {
     await queryInterface.addColumn('attributions', 'clientId', {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Client',
+          model: 'Clients',
           key: 'id',
         },
         onUpdate: 'CASCADE',
@@ -15,7 +15,7 @@ module.exports = {
     await queryInterface.addColumn('attributions','desktopId', {
       type: Sequelize.INTEGER,
       references: {
-        model: 'Desktop',
+        model: 'Desktops',
         key: 'id',
       },
       onUpdate: 'CASCADE',
