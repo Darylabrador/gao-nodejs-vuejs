@@ -12,7 +12,11 @@ const Attribution = sequelize.define('Attributions', {
     date: {
         type: DataTypes.DATEONLY,
         allowNull: false
-    }
+    },
+    hours: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
 });
 
 module.exports = Attribution;

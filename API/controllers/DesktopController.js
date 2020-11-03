@@ -24,7 +24,7 @@ exports.getComputers = async (req, res, next) => {
             include: [
                 {
                     model: Attribution,
-                    attributes: ['id', 'date'],
+                    attributes: ['id', 'date', 'hours'],
                     include: [{
                         model: Client,
                         attributes: ['id', 'surname', 'name']

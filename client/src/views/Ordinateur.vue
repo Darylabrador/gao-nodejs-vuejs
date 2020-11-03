@@ -1,15 +1,23 @@
 <template>
-  <v-card>
-
-    
-    <v-card-title>{{ ordinateurName }}</v-card-title>
-    <v-card-title>{{ ordinateurId }}</v-card-title>
-    <v-card-title>{{ attribution }}</v-card-title>
-
-
-    <v-card-actions>
-
-    </v-card-actions>
+  <v-card class="border">
+    <v-card-title class="border-bottom border-dark">{{ ordinateurName }}</v-card-title>
+  
+    <v-row v-for="timeslot in timeslots" :key="timeslot.id" no-gutters>
+      <v-col cols="2" class="text-center  border-bottom border-right border-dark">
+        {{ timeslot.heure }}h
+      </v-col>      
+      <v-col cols="8" class="pl-2 border-right border-bottom border-dark">
+        {{ timeslot.attribution }}
+      </v-col>      
+      <v-col cols="2" class="border-bottom border-dark">
+        <v-btn color="red" text v-if="timeslot.attribution != ''">
+          <v-icon> mdi-delete </v-icon>
+        </v-btn>
+        <v-btn color="green" text v-else>
+           <v-icon> mdi-plus-circle-outline </v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-card>
 </template>
 
