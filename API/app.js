@@ -47,31 +47,4 @@ app.use(headerApi);
 
 // error handler
 
-
-// Initiate database connection sync 
-var defaultAdminMail = "admin@gmail.com";
-
-database
-    // .sync({force: true})
-    .sync()
-    .then((result) => {
-        console.log("Connected to database")
-        return UserModel.findOne({ 
-            where: { 
-                mail: defaultAdminMail
-            } 
-        })
-    }).then((userExist) => {
-        if(!userExist) {
-            bcrypt.hash('password', 12).then(hashedPwd => {
-                const adminUser = new UserModel({
-                    mail: defaultAdminMail,
-                    password: hashedPwd
-                });
-                adminUser.save();
-            })
-        }
-    })
-    .catch(err => console.log(err))
-
 module.exports = app;
