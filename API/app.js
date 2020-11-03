@@ -13,15 +13,13 @@ const headerApi = require('./middlewares/configApi');
 
 // imports models files
 const UserModel    = require('./models/users');
-const ClientModel  = require('./models/clients');
-const DesktopModel = require('./models/desktops');
-const AssignModel  = require('./models/assigns');
+
 
 // relation between models
-ClientModel.hasMany(AssignModel);
-DesktopModel.hasMany(AssignModel, {onDelete: 'cascade'});
-AssignModel.belongsTo(ClientModel);
-AssignModel.belongsTo(DesktopModel);
+// ClientModel.hasMany(AssignModel);
+// DesktopModel.hasMany(AssignModel, {onDelete: 'cascade'});
+// AssignModel.belongsTo(ClientModel);
+// AssignModel.belongsTo(DesktopModel);
 
 // Imports controllers files
 
