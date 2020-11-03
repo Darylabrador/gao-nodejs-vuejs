@@ -31,7 +31,10 @@ export default {
                     this.ordinateurs.push(info)
                 })
             } catch (error) {
-                console.log(error)
+                this.flashMessage.error({
+                    message: "Ressource indisponible",
+                    time: 5000,
+                });
             }
         },
         addDesktop(newDesktop) {

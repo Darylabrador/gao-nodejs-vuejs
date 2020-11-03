@@ -1,24 +1,42 @@
 const { validationResult } = require('express-validator');
 
-const Desktop = require('../models/desktop');
+const Desktop     = require('../models/desktop');
+const Client      = require('../models/client');
+const Attribution = require('../models/attribution');
+
+// Define relation (needed if we don't use database.sync() in app.js)
+Client.hasMany(Attribution);
+Desktop.hasMany(Attribution);
+Attribution.belongsTo(Client);
+Attribution.belongsTo(Desktop);
+
 
 /** Get all information about computers
  * @name getComputers
  * @function
  * @throws Will throw an error if one error occursed
- */
+ */ 
 exports.getComputers = async (req, res, next) => {
     try {
+        
         const desktopInfo = await Desktop.findAll({
-            attributes: ['id', 'name']
+            attributes: ['id', 'name'],
+            include: [
+                {
+                    model: Attribution,
+                    attributes: ['id', 'date'],
+                    include: [{
+                        model: Client,
+                        attributes: ['id', 'surname', 'name']
+                    }]
+                }
+            ]
         });
         res.status(200).json({desktopInfo})
     } catch (error) {
         console.log('error to get computer', error);
     }
 }
-
-
 
 /** Post information about new desktop
  * @name postComputers
@@ -50,3 +68,4 @@ exports.postComputers = async (req, res, next) => {
         })
     }
 }
+

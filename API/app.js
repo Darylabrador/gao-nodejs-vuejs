@@ -9,15 +9,6 @@ const headerApi = require('./middlewares/configApi');
 // import routes files
 const desktopRoutes = require('./routes/desktopRoutes');
 
-// relation between models
-// ClientModel.hasMany(AssignModel);
-// DesktopModel.hasMany(AssignModel, {onDelete: 'cascade'});
-// AssignModel.belongsTo(ClientModel);
-// AssignModel.belongsTo(DesktopModel);
-
-// Imports controllers files
-
-
 var app = express();
 
 // view engine setup
