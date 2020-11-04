@@ -17,17 +17,22 @@ Attribution.belongsTo(Desktop);
  * @throws Will throw an error if one error occursed
  */ 
 exports.getComputers = async (req, res, next) => {
+    const currentDate = req.query.date
     try {
-        
         const desktopInfo = await Desktop.findAll({
             attributes: ['id', 'name'],
             include: [
                 {
                     model: Attribution,
                     attributes: ['id', 'date', 'hours'],
+                    required: false,
+                    where: {
+                        date: currentDate
+                    },
                     include: [{
                         model: Client,
-                        attributes: ['id', 'surname', 'name']
+                        attributes: ['id', 'surname', 'name'],
+                        required: false
                     }]
                 }
             ]

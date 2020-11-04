@@ -39,12 +39,10 @@ export default {
                 }else {
                     this.timeslots.push({
                         heure: hour,
-                        attribution: ""
+                        attribution: "",
                     })
                 }
             }
-
-            console.log(this.timeslots);
         }
     }
 }
