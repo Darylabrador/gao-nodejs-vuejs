@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div class="w-50">
     <v-row>
       <v-col cols="12" lg="6">
         <v-menu
@@ -27,7 +27,7 @@
         </v-menu>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script src="./datepicker.js"></script>
