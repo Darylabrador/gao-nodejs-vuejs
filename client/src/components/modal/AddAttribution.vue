@@ -11,20 +11,20 @@
         </div>
 
         <v-autocomplete
-            class="w-100 px-3 py-2 mt-5"
             v-model="select"
-            :search-input.sync="search"
             :loading="loading"
             :items="items"
-            item-text="fullname"
-            item-value="id"
-            return-object
-            label="Client"
+            :search-input.sync="search"
             cache-items
+            class="w-100 px-3 py-2 mt-5"
             flat
             hide-no-data
             hide-details
+            label="Client"
             solo-inverted
+            return-object
+            item-text="fullname"
+            item-value="id"
             >
         </v-autocomplete>
         
