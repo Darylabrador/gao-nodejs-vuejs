@@ -1,5 +1,6 @@
 <template>
   <v-card class="border">
+    <addAttribution :dialog.sync="attributionDialog" :ordinateurId="selectedDesktop" :heureAttribution="heureAttribution" :currentDate="currentDate" />
     <v-card-title class="border-bottom border-dark">{{ ordinateurName }}</v-card-title>
   
     <v-row v-for="timeslot in timeslots" :key="timeslot.id" no-gutters>
@@ -13,7 +14,7 @@
         <v-btn color="red" text v-if="timeslot.attribution != ''">
           <v-icon> mdi-delete </v-icon>
         </v-btn>
-        <v-btn color="green" text v-else>
+        <v-btn color="green" @click="addAttribution(true, timeslot.heure, ordinateurId)" text v-else>
            <v-icon> mdi-plus-circle-outline </v-icon>
         </v-btn>
       </v-col>

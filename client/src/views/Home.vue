@@ -4,7 +4,7 @@
         <addOrdinateurModal @addingDesktop="addDesktop"/>
         <v-row>
             <v-col cols="12" md="4" v-for="(ordi, key ) in ordinateurs" :key="key">
-                <ordinateur :ordinateurName="ordi.name" :ordinateurId="ordi.id" :attribution="ordi.Attributions" />
+                <ordinateur :ordinateurName="ordi.name" :ordinateurId="ordi.id" :attribution="ordi.Attributions" :currentDate="currentDate" />
             </v-col>
         </v-row>
     </v-container>

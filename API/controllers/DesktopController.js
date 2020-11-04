@@ -61,6 +61,7 @@ exports.postComputers = async (req, res, next) => {
         const returnDesktop = {
             id: newDesktop.id,
             name: newDesktop.name,
+            Attributions: []
         };
 
         res.status(200).json({ 
@@ -76,4 +77,3 @@ exports.postComputers = async (req, res, next) => {
         })
     }
 }
-
