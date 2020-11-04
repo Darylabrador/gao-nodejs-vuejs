@@ -1,14 +1,24 @@
+import AddAttribution from '../components/modal/AddAttribution.vue';
+
 export default {
+    components: {
+        AddAttribution
+    },
+
     props: {
         ordinateurName: {},
         ordinateurId: {},
-        attribution: {}
+        attribution: {},
+        currentDate: {}
     },
 
     data(){
         return {
             attributions: {},
-            timeslots: []
+            timeslots: [],
+            attributionDialog: false,
+            heureAttribution: "",
+            selectedDesktop: ""
         }
     },
 
@@ -43,6 +53,11 @@ export default {
                     })
                 }
             }
+        },
+        addAttribution(dialog, heure, ordinateurId){
+            this.attributionDialog = dialog;
+            this.heureAttribution  = heure;
+            this.selectedDesktop   = ordinateurId;
         }
     }
 }
