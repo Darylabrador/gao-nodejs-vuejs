@@ -12,11 +12,12 @@ export default {
     data() {
         return {
             name: '',
-            valid: true,
+            valid: false,
             loading: false,
             items: [],
             search: null,
             select: null,
+            clientId: null
         }
     },
     watch: {
@@ -53,7 +54,13 @@ export default {
         },
 
         async attribuer() {
-            console.log('attribuer')
+            let dataSend = {
+                date: this.currentDate,
+                hours: this.heureAttribution,
+                clientId: this.clientId,
+                desktopId: this.ordinateurId
+            }
+            console.log('envoie de la données', dataSend)
         },
         close() {
             this.$emit('update:dialog', false);

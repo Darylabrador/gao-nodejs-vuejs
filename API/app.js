@@ -9,6 +9,7 @@ const headerApi = require('./middlewares/configApi');
 // import routes files
 const desktopRoutes = require('./routes/desktopRoutes');
 const clientRoutes  = require('./routes/clientRoutes');
+const attributionRoutes = require('./routes/attributionRoutes');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(headerApi);
 // Initiate all routes
 app.use('/api', desktopRoutes);
 app.use('/api', clientRoutes);
+app.use('/api', attributionRoutes);
 
 // error handler
 

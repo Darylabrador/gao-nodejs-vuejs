@@ -8,6 +8,14 @@ const Attribution = sequelize.define('Attributions', {
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
+    }, 
+    clientId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    desktopId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
     },
     date: {
         type: DataTypes.DATEONLY,
@@ -17,6 +25,7 @@ const Attribution = sequelize.define('Attributions', {
         type: Sequelize.STRING,
         allowNull: false
     },
-});
+}, {timestamps: true});
 
 module.exports = Attribution;
+
