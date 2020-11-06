@@ -19,6 +19,14 @@ exports.postAttribution = async (req, res, next) => {
     const {date, hours, clientId, desktopId} = req.body;
 
     try {
+        const clientExist =  await Client.findByPk(clientId);
+
+        if(!clientExist) {
+            return res.status(200).json({
+                success: false,
+                message: 'Client inexistant',
+            });
+        }
         const attribution = new Attribution({date, hours, clientId, desktopId});
         const nouvelleAttribution = await attribution.save();
         const user = await Client.findOne({

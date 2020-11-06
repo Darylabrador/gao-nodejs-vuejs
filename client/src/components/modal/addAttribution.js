@@ -12,7 +12,6 @@ export default {
     data() {
         return {
             name: '',
-            valid: false,
             loading: false,
             items: [],
             search: null,
@@ -23,8 +22,6 @@ export default {
     watch: {
         search(val) {
             val && val !== this.select && this.querySelections(val)
-            console.log(val)
-            console.log(this.select)
         },
     },
     methods: {
@@ -57,10 +54,25 @@ export default {
             let dataSend = {
                 date: this.currentDate,
                 hours: this.heureAttribution,
-                clientId: this.clientId,
+                clientId: this.select.id,
                 desktopId: this.ordinateurId
             }
-            console.log('envoie de la données', dataSend)
+
+            const attributions = await Axios.post('http://127.0.0.1:3000/api/attributions', dataSend);
+            if(attributions.data.success) {
+                this.flashMessage.success({
+                    message: attributions.data.message,
+                    time: 5000,
+                });
+                this.close();
+                this.$emit('nouvellAttribution', attributions.data.content);
+            } else {
+                this.flashMessage.error({
+                    message: attributions.data.message,
+                    time: 5000,
+                });
+            }
+            console.log('envoie de la données', attributions)
         },
         close() {
             this.$emit('update:dialog', false);

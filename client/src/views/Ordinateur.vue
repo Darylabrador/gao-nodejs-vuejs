@@ -1,6 +1,6 @@
 <template>
   <v-card class="border">
-    <addAttribution :dialog.sync="attributionDialog" :ordinateurId="selectedDesktop" :heureAttribution="heureAttribution" :currentDate="currentDate" />
+    <addAttribution :dialog.sync="attributionDialog" :ordinateurId="selectedDesktop" :heureAttribution="heureAttribution" :currentDate="currentDate" @nouvellAttribution="infoAttribution" />
     <v-card-title class="border-bottom border-dark">{{ ordinateurName }}</v-card-title>
   
     <v-row v-for="timeslot in timeslots" :key="timeslot.id" no-gutters>

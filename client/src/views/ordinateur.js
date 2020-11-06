@@ -38,6 +38,7 @@ export default {
             });
         },
         displayHoraire() {
+            this.timeslots = [];
             for(let i = 0; i < 10; i++){
                 let hour = 8 + i;
                 if(this.attributions[hour]) {
@@ -58,6 +59,15 @@ export default {
             this.attributionDialog = dialog;
             this.heureAttribution  = heure;
             this.selectedDesktop   = ordinateurId;
+        },
+        infoAttribution(val) {
+            this.attributions[val.hours] = {
+                client: val.Client,
+                date: val.date,
+                idAttribution: val.id
+            }
+            this.initialize();
+            this.displayHoraire();
         }
     }
 }

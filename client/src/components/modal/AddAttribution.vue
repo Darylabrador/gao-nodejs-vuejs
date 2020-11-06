@@ -32,7 +32,7 @@
             <v-btn color="grey" class="mr-2 text-white" @click="close">
                 Annuler
             </v-btn>
-            <v-btn :disabled="!valid" color="primary" class="text-white" @click="attribuer">
+            <v-btn color="primary" class="text-white" @click="attribuer">
                 Attribuer
             </v-btn>
         </div>
