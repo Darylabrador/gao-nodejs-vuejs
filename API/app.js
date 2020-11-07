@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Use middleware
 app.use(headerApi);
 
+
 // Initiate all routes
 app.use('/api', desktopRoutes);
 app.use('/api', clientRoutes);

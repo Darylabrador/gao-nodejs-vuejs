@@ -55,3 +55,38 @@ exports.postAttribution = async (req, res, next) => {
         })
     }
 }
+
+
+
+
+/** Remove attribution
+ * @name removeAttribution
+ * @function
+ * @throws Will throw an error if one error occursed
+ */
+exports.removeAttribution = async (req, res, next) => {
+    const id = req.query.id;
+    try {
+        const attribution = await Attribution.findOne({
+            where: { id }
+        });
+        if(!attribution){
+            return res.status(200).json({
+                success: false,
+                message: 'Information introuvable',
+            })
+        }
+        await attribution.destroy();
+        return res.status(200).json({
+            success: true,
+            message: 'Attribution annulée',
+            content: id
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(200).json({
+            success: false,
+            message: 'Ressource indisponible',
+        })
+    }
+}

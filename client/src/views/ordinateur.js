@@ -1,8 +1,10 @@
 import AddAttribution from '../components/modal/AddAttribution.vue';
+import RemoveAttribution from '../components/modal/RemoveAttribution.vue';
 
 export default {
     components: {
-        AddAttribution
+        AddAttribution,
+        RemoveAttribution
     },
 
     props: {
@@ -17,8 +19,10 @@ export default {
             attributions: {},
             timeslots: [],
             attributionDialog: false,
+            removeAttributionDialog: false,
             heureAttribution: "",
-            selectedDesktop: ""
+            selectedDesktop: "",
+            attributionId: ""
         }
     },
 
@@ -37,6 +41,7 @@ export default {
                 }
             });
         },
+
         displayHoraire() {
             this.timeslots = [];
             for(let i = 0; i < 10; i++){
@@ -45,7 +50,8 @@ export default {
                     this.timeslots.push({
                         heure: hour,
                         attribution: `${this.attributions[hour].client.surname} ${this.attributions[hour].client.name}`,
-                        idAttribution: this.attributions[hour].idAttribution
+                        idAttribution: this.attributions[hour].idAttribution,
+                        client: this.attributions[hour].client
                     })
                 }else {
                     this.timeslots.push({
@@ -55,11 +61,13 @@ export default {
                 }
             }
         },
+
         addAttribution(dialog, heure, ordinateurId){
             this.attributionDialog = dialog;
             this.heureAttribution  = heure;
             this.selectedDesktop   = ordinateurId;
         },
+        
         infoAttribution(val) {
             this.attributions[val.hours] = {
                 client: val.Client,
@@ -67,6 +75,25 @@ export default {
                 idAttribution: val.id
             }
             this.initialize();
+            this.displayHoraire();
+        },
+
+        removeAttribution(dialog, attributionId) {
+            this.removeAttributionDialog = dialog;
+            this.attributionId = attributionId;
+        },
+
+        removeAttributionData(attributionId) {
+            this.attributions = {};
+            const refreshDeleteData = this.timeslots.filter(element => element.idAttribution != attributionId);
+            refreshDeleteData.forEach(element => {
+                if(element.client) {
+                    this.attributions[element.heure] = {
+                        client: element.client,
+                        idAttribution: element.idAttribution
+                    }
+                }
+            });
             this.displayHoraire();
         }
     }

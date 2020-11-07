@@ -1,6 +1,9 @@
 <template>
   <v-card class="border">
+
     <addAttribution :dialog.sync="attributionDialog" :ordinateurId="selectedDesktop" :heureAttribution="heureAttribution" :currentDate="currentDate" @nouvellAttribution="infoAttribution" />
+    <removeAttribution :dialog.sync="removeAttributionDialog" :attributionInfo="attributionId" @removedAttribution="removeAttributionData" />
+
     <v-card-title class="border-bottom border-dark">{{ ordinateurName }}</v-card-title>
   
     <v-row v-for="timeslot in timeslots" :key="timeslot.id" no-gutters>
@@ -11,7 +14,7 @@
         {{ timeslot.attribution }}
       </v-col>      
       <v-col cols="2" class="border-bottom border-dark">
-        <v-btn color="red" text v-if="timeslot.attribution != ''">
+        <v-btn color="red" text v-if="timeslot.attribution != ''" @click="removeAttribution(true, timeslot.idAttribution)">
           <v-icon> mdi-delete </v-icon>
         </v-btn>
         <v-btn color="green" @click="addAttribution(true, timeslot.heure, ordinateurId)" text v-else>

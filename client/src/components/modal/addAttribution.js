@@ -72,7 +72,6 @@ export default {
                     time: 5000,
                 });
             }
-            console.log('envoie de la données', attributions)
         },
         close() {
             this.$emit('update:dialog', false);

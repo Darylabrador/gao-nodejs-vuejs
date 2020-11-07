@@ -39,6 +39,7 @@ exports.getComputers = async (req, res, next) => {
         });
         res.status(200).json({desktopInfo})
     } catch (error) {
+        console.log(error)
         return res.status(200).json({
             success: false,
             message: 'Ressource indisponible',
