@@ -26,4 +26,4 @@ erase.on('close', () => {
             console.log('Finished !')
         })
     })
-})
+});

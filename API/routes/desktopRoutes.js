@@ -24,7 +24,7 @@ router.get('/computers', desktopController.getComputers);
 
 /**
 * Create new desktop
-* @name List POST
+* @name postComputers POST
 * @function
 * @memberof module:routers/desktop
 * @param {string} '/api/computers' - uri
@@ -32,6 +32,19 @@ router.get('/computers', desktopController.getComputers);
 * @return {JSON}
 */
 router.post('/computers', desktopController.postComputers);
+
+
+
+/**
+* Destroy specific desktop
+* @name deleteOrdinateur DELETE
+* @function
+* @memberof module:routers/desktop
+* @param {string} '/api/computers' - uri
+* @param {function} desktopController.deleteOrdinateur
+* @return {JSON}
+*/
+router.delete('/computers', desktopController.deleteOrdinateur);
 
 
 module.exports = router;

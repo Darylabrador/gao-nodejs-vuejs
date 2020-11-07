@@ -78,3 +78,36 @@ exports.postComputers = async (req, res, next) => {
         })
     }
 }
+
+
+
+
+/** Delete desktop
+ * @name deleteOrdinateur
+ * @function
+ * @throws Will throw an error if one error occursed
+ */
+exports.deleteOrdinateur = async (req, res, next) => {
+    const id = req.query.id;
+
+    try {
+        const desktopInfo = await Desktop.findByPk(id);
+        if(!desktopInfo) {
+            return res.status(200).json({
+                success: false,
+                message: 'Information introuvable',
+            })
+        }
+
+        await desktopInfo.destroy();
+        return res.status(200).json({
+            success: true,
+            message: 'Suppression effectuée',
+        })
+    } catch (error) {
+        return res.status(200).json({
+            success: false,
+            message: 'Ressources indisponible',
+        })
+    }
+}

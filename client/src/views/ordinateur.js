@@ -1,10 +1,12 @@
-import AddAttribution from '../components/modal/AddAttribution.vue';
+import AddAttribution    from '../components/modal/AddAttribution.vue';
 import RemoveAttribution from '../components/modal/RemoveAttribution.vue';
+import RemoveOrdinateur  from '../components/modal/RemoveOrdinateur.vue';
 
 export default {
     components: {
         AddAttribution,
-        RemoveAttribution
+        RemoveAttribution,
+        RemoveOrdinateur
     },
 
     props: {
@@ -20,6 +22,7 @@ export default {
             timeslots: [],
             attributionDialog: false,
             removeAttributionDialog: false,
+            deleteOrdiDialog: false,
             heureAttribution: "",
             selectedDesktop: "",
             attributionId: ""
@@ -95,6 +98,15 @@ export default {
                 }
             });
             this.displayHoraire();
+        },
+
+        deleteOrdi(dialog, ordi) {
+            this.deleteOrdiDialog = dialog;
+            this.selectedDesktop = ordi;
+        },
+
+        removeDesktopInfo(ordinateur) {
+            this.$emit('removeDesktop', ordinateur);
         }
     }
 }

@@ -45,12 +45,22 @@ export default {
                 });
             }
         },
+
         addDesktop(newDesktop) {
             this.ordinateurs.push(newDesktop)
         },
+
         async nouvellDate(date) {
             this.currentDate = date;
             await this.getAll();
+        },
+
+        removeDesktopInfo(ordinateurId) {
+            const newArrayDesktop = this.ordinateurs.filter(element => element.id != ordinateurId);
+            this.ordinateurs = [];
+            newArrayDesktop.forEach(info => {
+                this.ordinateurs.push(info)
+            });
         }
     }
 }

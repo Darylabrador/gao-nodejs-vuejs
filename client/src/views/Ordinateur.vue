@@ -4,7 +4,16 @@
     <addAttribution :dialog.sync="attributionDialog" :ordinateurId="selectedDesktop" :heureAttribution="heureAttribution" :currentDate="currentDate" @nouvellAttribution="infoAttribution" />
     <removeAttribution :dialog.sync="removeAttributionDialog" :attributionInfo="attributionId" @removedAttribution="removeAttributionData" />
 
-    <v-card-title class="border-bottom border-dark">{{ ordinateurName }}</v-card-title>
+    <removeOrdinateur :dialog.sync="deleteOrdiDialog" :ordinateur="selectedDesktop" @removeDesktop="removeDesktopInfo" />
+
+    <v-card-title class="border-bottom border-dark w-100 d-flex justify-content-between">
+      <div>
+        {{ ordinateurName }}
+      </div>
+      <v-btn color="red" text @click="deleteOrdi(true, ordinateurId)">
+        <v-icon> mdi-delete </v-icon>
+      </v-btn>
+    </v-card-title>
   
     <v-row v-for="timeslot in timeslots" :key="timeslot.id" no-gutters>
       <v-col cols="2" class="text-center  border-bottom border-right border-dark">
