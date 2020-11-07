@@ -1,5 +1,3 @@
-const { Router } = require('express');
-
 /** Routes to attributions
  * @module routers/attributions
  * @requires express express.Router()
