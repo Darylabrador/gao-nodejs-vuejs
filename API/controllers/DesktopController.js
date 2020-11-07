@@ -1,14 +1,17 @@
-const { validationResult } = require('express-validator');
-
 const Desktop     = require('../models/desktop');
 const Client      = require('../models/client');
 const Attribution = require('../models/attribution');
+
 
 // Define relation (needed if we don't use database.sync() in app.js)
 Client.hasMany(Attribution);
 Desktop.hasMany(Attribution);
 Attribution.belongsTo(Client);
 Attribution.belongsTo(Desktop);
+
+
+// Define element per page
+var ITEM_PER_PAGE = 3;
 
 
 /** Get all information about computers
@@ -18,7 +21,14 @@ Attribution.belongsTo(Desktop);
  */ 
 exports.getComputers = async (req, res, next) => {
     const currentDate = req.query.date
+    const page = +req.query.page || 1;
+
     try {
+
+        // Define totalPage based on totalItem
+        const totalItem = await Desktop.findAndCountAll();
+        const totalPage = Math.ceil(totalItem.count / ITEM_PER_PAGE);
+
         const desktopInfo = await Desktop.findAll({
             attributes: ['id', 'name'],
             include: [
@@ -35,11 +45,23 @@ exports.getComputers = async (req, res, next) => {
                         required: false
                     }]
                 }
-            ]
+            ],
+
+            // Paginations informations
+            offset: (page - 1) * ITEM_PER_PAGE,
+            limit: ITEM_PER_PAGE
         });
-        res.status(200).json({desktopInfo})
+
+
+        res.status(200).json({
+            desktopInfo,
+            hasNextPage: ITEM_PER_PAGE * page < totalItem.count,
+            hasPreviousPage: page > 1,
+            nextPage: page + 1,
+            previousPage: page - 1,
+            totalPage
+        });
     } catch (error) {
-        console.log(error)
         return res.status(200).json({
             success: false,
             message: 'Ressource indisponible',
