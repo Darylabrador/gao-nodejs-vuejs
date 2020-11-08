@@ -5,6 +5,7 @@ const logger       = require('morgan');
 
 // import manual middleware
 const headerApi = require('./middlewares/configApi');
+const isAuthAPI = require('./middlewares/isAuthApi');
 
 // import routes files
 const desktopRoutes     = require('./routes/desktopRoutes');
@@ -30,10 +31,8 @@ app.use(headerApi);
 
 // Initiate all routes
 app.use('/api', autRoutes);
-app.use('/api', desktopRoutes);
-app.use('/api', clientRoutes);
-app.use('/api', attributionRoutes);
-
-// error handler
+app.use('/api', isAuthAPI, desktopRoutes);
+app.use('/api', isAuthAPI, clientRoutes);
+app.use('/api', isAuthAPI, attributionRoutes);
 
 module.exports = app;
