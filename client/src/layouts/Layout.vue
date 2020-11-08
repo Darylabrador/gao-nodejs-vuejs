@@ -4,10 +4,10 @@
 
         <!-- subheader -->
         <div>
-            <v-subheader grey outlined class="bg-secondary">
+            <v-subheader grey outlined class="bg-secondary" v-if="isLogged">
             <h6 class="text-white mt-1"> Gestion ordinateur </h6>
             <v-spacer></v-spacer>
-            <v-btn icon color="white">
+            <v-btn icon color="white" @click="disconnected">
                 <v-icon>mdi-export</v-icon>
             </v-btn>
             </v-subheader>
