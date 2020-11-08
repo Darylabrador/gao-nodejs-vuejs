@@ -22,4 +22,15 @@ const router = require('express').Router();
 router.get('/clients/search', clientController.getClients);
 
 
+/**
+* Create client and assign it to desktop timeslot
+* @name createClient POST
+* @function
+* @memberof module:routers/clients
+* @param {string} '/api/clients/attribution' - uri
+* @param {function} clientController.createClient
+* @return {JSON}
+*/
+router.post('/clients/attribution', clientController.createClient);
+
 module.exports = router;

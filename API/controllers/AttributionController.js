@@ -36,7 +36,7 @@ exports.postAttribution = async (req, res, next) => {
             }
         });
 
-        const returnDate = {
+        const returnData = {
             id: nouvelleAttribution.id,
             date: nouvelleAttribution.date,
             hours: nouvelleAttribution.hours,
@@ -46,7 +46,7 @@ exports.postAttribution = async (req, res, next) => {
         return res.status(200).json({
             success: true,
             message: 'Attribution effectuée',
-            content: returnDate
+            content: returnData
         })
     } catch (error) {
         return res.status(200).json({
