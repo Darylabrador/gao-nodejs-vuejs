@@ -12,6 +12,11 @@ Pour l'initialisation, vous devez vérifier si vous avez bien sequelize-cli et n
 - npm install -g nodemon
 - npm install -g sequelize-cli
 
+Identifiant du compte admin : 
+
+- identifiant : admin@gmail.com
+- mot de passe : 123456
+
 ## Initialisation du projet backend
 
 Après avoir fait un git clone de ce projet, vous devez effectué les actions suivantes : 
