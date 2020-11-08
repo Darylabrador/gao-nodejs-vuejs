@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import tokenConfig from '../../utils/tokenConfig';
 
 export default {
     props: {
@@ -31,6 +32,9 @@ export default {
                     Axios.get('http://127.0.0.1:3000/api/clients/search', {
                         params: {
                             client: v
+                        },
+                        headers: {
+                            Authorization: `Bearer ${tokenConfig.getToken()}`
                         }
                     }).then(reponse => {
                         let reponseData = reponse.data.clientList;

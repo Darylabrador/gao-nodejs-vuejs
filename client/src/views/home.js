@@ -6,6 +6,7 @@ import Axios from 'axios';
 import Ordinateur from './Ordinateur.vue';
 import AddOrdinateurModal from '../components/modal/AddOrdinateurModal.vue';
 import Datepicker from '../components/datepicker/Datepicker.vue';
+import tokenConfig  from '../utils/tokenConfig';
 
 export default {
     components : {
@@ -46,6 +47,9 @@ export default {
                     params: {
                         date: this.currentDate,
                         page: this.currentPage
+                    },
+                    headers: {
+                        Authorization: `Bearer ${tokenConfig.getToken()}`
                     }
                 });
 

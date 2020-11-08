@@ -6,11 +6,6 @@ export default {
             isLogged: tokenConfig.getToken()
         }
     },
-
-    created() {
-        console.log(this.isLogged)
-    },
-
     methods: {
         disconnected() {
             tokenConfig.removeToken();

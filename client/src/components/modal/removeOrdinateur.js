@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import tokenConfig from '../../utils/tokenConfig';
 
 export default {
     props: {
@@ -14,6 +15,9 @@ export default {
             Axios.delete('http://127.0.0.1:3000/api/computers', {
                 params: {
                     id: this.ordinateur
+                },
+                headers: {
+                    Authorization: `Bearer ${tokenConfig.getToken()}`
                 }
             }).then(() => {
                 this.$emit("removeDesktop", this.ordinateur);
