@@ -1,7 +1,14 @@
+/**
+ * Add assignment js file
+ */
 import Axios from 'axios';
 import tokenConfig from '../../utils/tokenConfig';
 
 export default {
+
+    /**
+     * Data from parent component (Ordinateur.vue)
+     */
     props: {
         ordinateurId: {},
         heureAttribution: {},
@@ -10,6 +17,10 @@ export default {
         dialog: {}
     },
 
+
+    /**
+     * Data used by AddAttribution.vue
+     */
     data() {
         return {
             name: '',
@@ -20,12 +31,30 @@ export default {
             clientId: null
         }
     },
+
+
+    /**
+     * This event is used by autocomplete
+     */
     watch: {
         search(val) {
             val && val !== this.select && this.querySelections(val)
         },
     },
+
+
     methods: {
+
+        /**
+         * Function to close the modal
+         */
+        close() {
+            this.$emit('update:dialog', false);
+        },
+
+        /**
+         * Create the array for autocomplete
+         */
         querySelections(v) {
             if (v.length > 2) {
                 setTimeout(() => {
@@ -54,6 +83,10 @@ export default {
             }
         },
 
+
+        /**
+         * Set an assignment timeslot and inform the parent component
+         */
         async attribuer() {
             let dataSend = {
                 date: this.currentDate,
@@ -76,9 +109,6 @@ export default {
                     time: 5000,
                 });
             }
-        },
-        close() {
-            this.$emit('update:dialog', false);
-        },
+        }
     },
 }

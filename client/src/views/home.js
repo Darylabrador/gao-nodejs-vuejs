@@ -9,12 +9,20 @@ import Datepicker from '../components/datepicker/Datepicker.vue';
 import tokenConfig  from '../utils/tokenConfig';
 
 export default {
+
+    /**
+     * all components
+     */
     components : {
         Ordinateur,
         AddOrdinateurModal,
         Datepicker
     },
 
+
+    /**
+     * Data used by Home.vue / home.js
+     */
     data(){
         return {
             ordinateurs: [],
@@ -28,10 +36,18 @@ export default {
         }
     },
 
+
+    /**
+     * Default function used when Home.vue component is loaded
+     */
     created() {
         this.getAll();
     },
 
+
+    /**
+     * Handle the change on pagination number
+     */
     watch: {
         currentPage: function(page) {
             this.currentPage = page
@@ -39,7 +55,15 @@ export default {
         }
     },
 
+
+    /**
+     * List of methods
+     */
     methods: {
+
+        /**
+         * initialisation function that allow us to see pagination / list of destops / assignment
+         */
         async getAll(){
             try {
                 this.ordinateurs = [];
@@ -73,15 +97,29 @@ export default {
             }
         },
 
+
+        /**
+         * Handle the information about new desktop
+         * @param {Object} newDesktop 
+         */
         addDesktop(newDesktop) {
             this.ordinateurs.push(newDesktop)
         },
 
+
+        /**
+         * handle the date modification
+         * @param {Date} date 
+         */
         async nouvellDate(date) {
             this.currentDate = date;
             await this.getAll();
         },
 
+
+        /**
+         * Re-create the from when we got the delete desktop event from child component
+         */
         removeDesktopInfo() {
             // const newArrayDesktop = this.ordinateurs.filter(element => element.id != ordinateurId);
             // this.ordinateurs = [];

@@ -1,4 +1,6 @@
-
+/**
+ * Datepicker script js
+ */
 export default {
     data: vm => ({
         date: new Date().toISOString().substr(0, 10),

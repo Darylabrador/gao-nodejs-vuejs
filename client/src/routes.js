@@ -9,14 +9,6 @@ import tokenConfig from './utils/tokenConfig';
 
 Vue.use(VueRouter);
 
-// check if user is connected
-const isAuthenticated = (to, from, next) => {
-    if (tokenConfig.getToken() != null) {
-        return location.href = '/';
-    }
-    next()
-}
-
 
 // check if is not authenticated
 const isNotAuthenticated = (to, from, next) => {
@@ -25,6 +17,15 @@ const isNotAuthenticated = (to, from, next) => {
     }
     next()
 }
+
+// check if user is connected
+const isAuthenticated = (to, from, next) => {
+    if (tokenConfig.getToken() != null) {
+        return location.href = '/';
+    }
+    next()
+}
+
 
 // mode history => hide #/ in the URL
 const Routes = new VueRouter({

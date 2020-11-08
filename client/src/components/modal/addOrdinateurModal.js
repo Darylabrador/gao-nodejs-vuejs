@@ -1,3 +1,8 @@
+/**
+ * Add desktop js file
+ */
+
+
 import Axios from 'axios';
 import tokenConfig from '../../utils/tokenConfig';
 
@@ -19,6 +24,10 @@ export default {
     },
 
     methods: {
+
+        /**
+         * Create a new desktop in BDD and inform the parent component
+         */
         async validate() {
             try {
                 const newDesktop = await Axios.post('http://localhost:3000/api/computers', { name: this.name }, {
