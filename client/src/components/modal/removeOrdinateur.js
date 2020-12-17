@@ -34,10 +34,7 @@ export default {
          * Delete desktop from BDD and inform parent component
          */
         deleteOrdinateur() {
-            Axios.delete('http://127.0.0.1:3000/api/computers', {
-                params: {
-                    id: this.ordinateur
-                },
+            Axios.delete(`http://127.0.0.1:3000/api/computers/${this.ordinateur}`, {
                 headers: {
                     Authorization: `Bearer ${tokenConfig.getToken()}`
                 }

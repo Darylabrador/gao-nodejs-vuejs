@@ -33,10 +33,7 @@ export default {
          * Delete specific assignment and inform the parent component
          */
         remove(){
-            Axios.delete('http://127.0.0.1:3000/api/attributions', {
-                params : {
-                    id: this.attributionInfo
-                },
+            Axios.delete(`http://127.0.0.1:3000/api/attributions/${this.attributionInfo}`, {
                 headers: {
                     Authorization: `Bearer ${tokenConfig.getToken()}`
                 }
