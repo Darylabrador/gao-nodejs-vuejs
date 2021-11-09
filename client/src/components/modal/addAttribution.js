@@ -112,7 +112,11 @@ export default {
                     desktopId: this.ordinateurId
                 }
     
-                const attributions = await Axios.post('http://127.0.0.1:3000/api/attributions', dataSend);
+                const attributions = await Axios.post('http://127.0.0.1:3000/api/attributions', dataSend, {
+                    headers: {
+                        Authorization: `Bearer ${tokenConfig.getToken()}`
+                    }
+                });
                 if(attributions.data.success) {
                     this.flashMessage.success({
                         message: attributions.data.message,

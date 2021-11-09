@@ -53,6 +53,7 @@ exports.postLogin = async (req, res, next) => {
         })
 
     } catch (error) {
+        console.log(error)
         return res.status(200).json({
             success: false,
             message: 'Ressource indisponible',
