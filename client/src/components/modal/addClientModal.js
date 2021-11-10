@@ -1,9 +1,7 @@
 /**
  * Add client js file
  */
-
-import Axios from 'axios';
-import tokenConfig from '../../utils/tokenConfig';
+import { apiService } from '../../services/apiService';
 
 export default {
     /**
@@ -54,19 +52,13 @@ export default {
          * Create client and assign in timeslot
          */
         async createClient() {
-            const newClient = await Axios.post(`http://127.0.0.1:3000/api/clients/attribution`,
+            const newClient = await apiService.post(`/clients/attribution`,
             {
                 name: this.name,
                 surname: this.surname,
                 desktop: this.ordinateurId,
                 hours: this.heureAttribution,
                 date: this.currentDate
-            },
-            {
-                headers: 
-                {
-                    Authorization: `Bearer ${tokenConfig.getToken()}`
-                }
             });
 
             if (newClient.data.success) {

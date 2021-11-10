@@ -2,11 +2,10 @@
  * Dashboard data
  */
 
-import Axios from 'axios';
 import Ordinateur from './Ordinateur.vue';
 import AddOrdinateurModal from '../components/modal/AddOrdinateurModal.vue';
 import Datepicker from '../components/datepicker/Datepicker.vue';
-import tokenConfig  from '../utils/tokenConfig';
+import {apiService} from "../services/apiService";
 
 export default {
 
@@ -67,14 +66,11 @@ export default {
         async getAll(){
             try {
                 this.ordinateurs = [];
-                const responseData = await Axios.get('http://127.0.0.1:3000/api/computers', {
+                const responseData = await apiService.get('/computers', {
                     params: {
                         date: this.currentDate,
                         page: this.currentPage
                     },
-                    headers: {
-                        Authorization: `Bearer ${tokenConfig.getToken()}`
-                    }
                 });
 
                 const desktopInfo = responseData.data.desktopInfo;
