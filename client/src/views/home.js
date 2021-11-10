@@ -66,12 +66,7 @@ export default {
         async getAll(){
             try {
                 this.ordinateurs = [];
-                const responseData = await apiService.get('/computers', {
-                    params: {
-                        date: this.currentDate,
-                        page: this.currentPage
-                    },
-                });
+                const responseData = await apiService.get(`/computers/?date=${this.currentDate}&page=${this.currentPage}`);
 
                 const desktopInfo = responseData.data.desktopInfo;
                 desktopInfo.forEach(info => {

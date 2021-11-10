@@ -31,7 +31,7 @@ export default {
          * Delete specific assignment and inform the parent component
          */
         remove(){
-            apiService.delete(`http://127.0.0.1:3000/api/attributions/${this.attributionInfo}`).then(() => {
+            apiService.delete(`/attributions/${this.attributionInfo}`).then(() => {
                 this.$emit("removedAttribution", this.attributionInfo);
                 this.close();
             }).catch(()=>{

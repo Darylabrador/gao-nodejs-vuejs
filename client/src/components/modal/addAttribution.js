@@ -68,11 +68,7 @@ export default {
         querySelections(v) {
             if (v.length > 2) {
                 setTimeout(() => {
-                    apiService.get('/clients/search', {
-                        params: {
-                            client: v
-                        },
-                    }).then(reponse => {
+                    apiService.get(`/clients/search/?client=${v}`).then(reponse => {
                         let reponseData = reponse.data.clientList;
                         
                         if (reponseData.length == 0 && this.client == null) {

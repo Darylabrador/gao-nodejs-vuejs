@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const STARTING_URL = "http://127.0.0.1:3000/api";
+const STARTING_URL = "http://127.0.0.1:3002/api";
 
 export const apiService = {
     get(url, data = {}) {
